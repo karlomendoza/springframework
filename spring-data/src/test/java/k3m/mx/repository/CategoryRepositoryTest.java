@@ -2,6 +2,7 @@ package k3m.mx.repository;
 
 import java.util.List;
 
+import org.junit.Ignore;
 import org.junit.Test;
 
 import junit.framework.Assert;
@@ -23,6 +24,7 @@ public class CategoryRepositoryTest extends PersistenceContextTest {
 		Assert.assertFalse(categorys.isEmpty());
 	}
 
+	@Ignore
 	@Test
 	public void findByName() {
 		String nameExpected = "novel";
