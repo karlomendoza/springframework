@@ -1,19 +1,14 @@
 package k3m.mx.entities;
 
-import java.util.Date;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity(name="author")
 public class Author {
 	@Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="idAuthor")
-	private int idAuthor;
+	private Integer idAuthor;
 	
 	@Column(name="firstName")
 	private String firstName;
@@ -25,7 +20,7 @@ public class Author {
 		
 	}
 	
-	public Author(int idAuthor, String firstName, String lastName){
+	public Author(Integer idAuthor, String firstName, String lastName){
 		this.idAuthor = idAuthor;
 		this.firstName = firstName;
 		this.lastName = lastName;
@@ -38,11 +33,11 @@ public class Author {
 				idAuthor, firstName, lastName);
 	}
 
-	public int getIdAuthor() {
+	public Integer getIdAuthor() {
 		return idAuthor;
 	}
 
-	public void setIdAuthor(int idAuthor) {
+	public void setIdAuthor(Integer idAuthor) {
 		this.idAuthor = idAuthor;
 	}
 

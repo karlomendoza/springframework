@@ -1,19 +1,14 @@
 package k3m.mx.entities;
 
-import java.util.Date;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity(name="students")
 public class Student {
 	@Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="idStudent")
-	private int idStudent;
+	private Integer idStudent;
 	
 	@Column(name="firstName")
 	private String firstName;
@@ -36,7 +31,7 @@ public class Student {
 
 	
 	
-	public Student(int idStudent, String firstName, String lastName, String studentAdress, String phoneNumber,
+	public Student(Integer idStudent, String firstName, String lastName, String studentAdress, String phoneNumber,
 			String emailAdress) {
 		this.idStudent = idStudent;
 		this.firstName = firstName;
@@ -55,15 +50,11 @@ public class Student {
 				+ "]";
 	}
 
-
-
-	public int getIdStudent() {
+	public Integer getIdStudent() {
 		return idStudent;
 	}
 
-
-
-	public void setIdStudent(int idStudent) {
+	public void setIdStudent(Integer idStudent) {
 		this.idStudent = idStudent;
 	}
 

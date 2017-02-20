@@ -7,6 +7,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import k3m.mx.config.PersistenceJPAConfig;
 import k3m.mx.repository.AuthorRepository;
+import k3m.mx.repository.BookByAuthorRepository;
 import k3m.mx.repository.BookRepository;
 import k3m.mx.repository.CategoryRepository;
 import k3m.mx.repository.StudentRepository;
@@ -26,5 +27,8 @@ public class PersistenceContextTest {
 	
 	@Autowired
 	protected StudentRepository studentRepository;
+	
+	@Autowired
+	protected BookByAuthorRepository bookByAuthorRepository;
 	
 }

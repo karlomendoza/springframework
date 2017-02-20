@@ -2,16 +2,13 @@ package k3m.mx.entities;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity(name="category")
 public class Category {
 	@Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="idCategory")
-	private int idCategory;
+	private Integer idCategory;
 	
 	@Column(name="name")
 	private String name;
@@ -23,8 +20,7 @@ public class Category {
 		
 	}
 
-	public Category(int idCategory, String name, String description) {
-		super();
+	public Category(Integer idCategory, String name, String description) {
 		this.idCategory = idCategory;
 		this.name = name;
 		this.description = description;
@@ -35,11 +31,11 @@ public class Category {
 		return "Category [idCategory=" + idCategory + ", name=" + name + ", description=" + description + "]";
 	}
 
-	public int getIdCategory() {
+	public Integer getIdCategory() {
 		return idCategory;
 	}
 
-	public void setIdCategory(int idCategory) {
+	public void setIdCategory(Integer idCategory) {
 		this.idCategory = idCategory;
 	}
 
