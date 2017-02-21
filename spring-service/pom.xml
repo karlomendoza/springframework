@@ -6,18 +6,15 @@
     <version>0.0.1-SNAPSHOT</version>
   </parent>
   <artifactId>spring-service</artifactId>
-  <packaging>jar</packaging>  
+<packaging>jar</packaging>  
   
-  <dependencies>
-        <dependency>
-            <groupId>mx.k3m</groupId>
-            <artifactId>data-model</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
-        </dependency>
+	<dependencies>
 		<dependency>
-            <groupId>mx.k3m</groupId>
-            <artifactId>spring-data</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
-        </dependency>
-    </dependencies>
+			<groupId>mx.k3m</groupId>
+			<artifactId>spring-data</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+		
+		
+	</dependencies>
 </project>
