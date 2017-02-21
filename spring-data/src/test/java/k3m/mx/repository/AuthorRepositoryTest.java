@@ -50,4 +50,12 @@ public class AuthorRepositoryTest extends PersistenceContextTest {
 		String titleActual = authors.get(0).getFirstName();
 		assertThat("authors name should be the same", titleActual, equalTo(nameExpected));
 	}
+	
+	@Transactional
+	@Test
+	public void authorHasBooks(){
+		Author author = authorRepository.getOne(1);
+		
+		assertThat("author should have a list of books", author.getBooks(), is(not(empty())));
+	}
 }
