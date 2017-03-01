@@ -1,12 +1,22 @@
 package k3m.mx.entities;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.OneToMany;
 
 @Entity(name="category")
 public class Category {
 	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="idCategory")
 	private Integer idCategory;
 	
@@ -15,6 +25,14 @@ public class Category {
 	
 	@Column(name="description")
 	private String description;
+	
+	@OneToMany(fetch=FetchType.LAZY, cascade=CascadeType.REFRESH)
+	@JoinTable(
+			name="books_by_category",
+			joinColumns = @JoinColumn( name="idCategory"),
+			inverseJoinColumns = @JoinColumn(name = "isbn")
+	)
+	private List<Book> books;
 	
 	public Category(){	
 		
@@ -92,6 +110,11 @@ public class Category {
 		this.description = description;
 	}
 
-	
-	
+	public List<Book> getBooks() {
+		return books;
+	}
+
+	public void setBooks(List<Book> books) {
+		this.books = books;
+	}	
 }

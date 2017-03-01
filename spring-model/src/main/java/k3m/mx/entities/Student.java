@@ -2,11 +2,16 @@ package k3m.mx.entities;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 
 @Entity(name="students")
 public class Student {
 	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="idStudent")
 	private Integer idStudent;
 	
@@ -24,6 +29,9 @@ public class Student {
 	
 	@Column(name="email_adress")
 	private String emailAdress;
+	
+	@OneToOne(mappedBy = "student", fetch = FetchType.LAZY)
+	private BookOutOnLoan bookOutOnLoan;
 	
 	public Student(){
 		

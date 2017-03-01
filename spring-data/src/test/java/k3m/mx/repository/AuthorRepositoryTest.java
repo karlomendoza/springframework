@@ -4,6 +4,7 @@ import static org.hamcrest.Matchers.*;
 
 import static org.junit.Assert.assertThat;
 
+import java.util.Arrays;
 import java.util.List;
 
 import org.junit.FixMethodOrder;
@@ -14,6 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import k3m.mx.context.PersistenceContextTest;
 import k3m.mx.entities.Author;
+import k3m.mx.entities.Book;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class AuthorRepositoryTest extends PersistenceContextTest {
@@ -28,6 +30,21 @@ public class AuthorRepositoryTest extends PersistenceContextTest {
 		
 		assertThat("the authors name are different, should be the same", 
 				authorExpected.getFirstName(), equalTo(authorActual.getFirstName()));
+	}
+	
+	@Test
+	@Transactional
+	public void aaCreateAll(){
+		Author author = new Author(null, "karlo", "mendoza");
+		Book book = new Book("ppp", "could not make it", null);
+		author.setBooks(Arrays.asList(book));
+		
+		authorRepository.save(author);
+		
+		Author authorActual = authorRepository.getOne(author.getIdAuthor());
+		assertThat("created author should have his books", authorActual.getBooks(), 
+				equalTo(author.getBooks()));
+		
 	}
 	
 	@Test

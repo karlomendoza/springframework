@@ -12,6 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.OneToMany;
+import javax.persistence.Transient;
 
 @Entity(name="author")
 public class Author {
@@ -26,7 +27,7 @@ public class Author {
 	@Column(name="lastName")
 	private String lastName;
 	
-	@OneToMany(fetch=FetchType.LAZY, cascade=CascadeType.ALL)
+	@OneToMany(fetch=FetchType.LAZY, cascade=CascadeType.MERGE)
 	@JoinTable(
 			name="books_by_author",
 			joinColumns = @JoinColumn( name="idAuthor"),
@@ -34,10 +35,12 @@ public class Author {
 	)
 	private List<Book> books;
 	
+	@Transient
+	private String isbns;
+	
 	public Author(){
 		
 	}
-	
 	
 	public Author(Integer idAuthor, String firstName, String lastName){
 		this.idAuthor = idAuthor;
@@ -113,6 +116,16 @@ public class Author {
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
 	}
+
+	public String getIsbns() {
+		return isbns;
+	}
+
+
+	public void setIsbns(String isbns) {
+		this.isbns = isbns;
+	}
+
 
 	@Override
 	public String toString(){

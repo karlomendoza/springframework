@@ -5,12 +5,11 @@ import java.util.Date;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.OneToOne;
-
-import org.hibernate.annotations.Cascade;
 
 @Entity(name="books")
 public class Book {
@@ -24,13 +23,27 @@ public class Book {
 	@Column(name="date_of_publication")
 	private Date dateOfPublication;
 	
-	@OneToOne(cascade=CascadeType.ALL)
+	
+	//TODO change it latter so it's a many to many relationship
+	@OneToOne(cascade=CascadeType.REFRESH)
 	@JoinTable(
 			name="books_by_author",
 			joinColumns = @JoinColumn( name="isbn"),
 			inverseJoinColumns = @JoinColumn(name = "idAuthor")
 	)
 	private Author author;
+	
+	//TODO change it latter so it's a many to many relationship
+	@OneToOne(cascade=CascadeType.MERGE, fetch=FetchType.EAGER)
+	@JoinTable(
+			name="books_by_category",
+			joinColumns = @JoinColumn( name="isbn"),
+			inverseJoinColumns = @JoinColumn(name = "idCategory")
+	)
+	private Category category;
+	
+	@OneToOne(mappedBy = "book", cascade=CascadeType.ALL)
+	private BookOutOnLoan bookOutOnLoan;
 	
 	public Book(){
 		
@@ -112,5 +125,20 @@ public class Book {
 	public void setAuthor(Author author) {
 		this.author = author;
 	}
-	
+
+	public Category getCategory() {
+		return category;
+	}
+
+	public void setCategory(Category category) {
+		this.category = category;
+	}
+
+	public BookOutOnLoan getBookOutOnLoan() {
+		return bookOutOnLoan;
+	}
+
+	public void setBookOutOnLoan(BookOutOnLoan bookOutOnLoan) {
+		this.bookOutOnLoan = bookOutOnLoan;
+	}
 }
